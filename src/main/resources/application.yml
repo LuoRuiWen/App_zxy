@@ -8,7 +8,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       name: App_zxy
-      url: jdbc:mysql://127.0.0.1:3306/app_zxy #oracle : jdbc:oracle:thin:@10.20.149.85:1521:ocnauto
+      url: jdbc:mysql://127.0.0.1:3306/app_zxy?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false #oracle : jdbc:oracle:thin:@10.20.149.85:1521:ocnauto
       username: root
       password: Mm123456
       driver-class-name: com.mysql.jdbc.Driver
