@@ -3,14 +3,25 @@
     <head lang="en">
         <meta charset="UTF-8">
         <title>欢迎登陆</title>
+        <link rel="stylesheet" th:href="@{../js/layui/css/layui.css}"/>
     </head>
     <body>
-        <form action="login" method="post">
+        <form class="layui-form" action="login" method="post">
             <span>账&nbsp;&nbsp;号:</span>
-            <input id="id" placeholder="请输入手机号码！"><br/>
+            <input class="layui-input" id="id" placeholder="请输入手机号码！" required lay-verify="required" autocomplete="off"><br/>
             <span>密&nbsp;&nbsp;码:</span>
-            <input id="userpwd" placeholder="请输入手机号码！"><br/>
-            <button type="commit">登&nbsp&nbsp陆</button>
+            <input type="password" class="layui-input" id="userpwd" placeholder="请输入密码！" required lay-verify="required" autocomplete="off"><br/>
+            <button class="layui-btn" lay-submit lay-filter="formDemo">登&nbsp&nbsp陆</button>
         </form>
     </body>
+    <script type="text/javascript" th:src="@{../js/layui/layui.js}"></script>
+    <script type="text/javascript">
+        layui.use('form', function() {
+            var form = layui.form;
+            form.on('submit(formDemo)', function(data){
+                layer.msg(JSON.stringify(data.field));
+                return false;
+            });
+        });
+    </script>
 </html>
