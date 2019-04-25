@@ -4,8 +4,8 @@
   <resultMap id="BaseResultMap" type="com.zxy.entity.stop.stop">
     <id column="sid" jdbcType="INTEGER" property="sid" />
     <result column="sname" jdbcType="VARCHAR" property="sname" />
-    <result column="arrive_time" jdbcType="TIMESTAMP" property="arriveTime" />
-    <result column="away_time" jdbcType="TIMESTAMP" property="awayTime" />
+    <result column="arrive_time" jdbcType="TIME" property="arriveTime" />
+    <result column="away_time" jdbcType="TIME" property="awayTime" />
     <result column="tid" jdbcType="INTEGER" property="tid" />
     <result column="price" jdbcType="DECIMAL" property="price" />
     <result column="level" jdbcType="INTEGER" property="level" />
@@ -27,8 +27,8 @@
     insert into stop (sid, sname, arrive_time, 
       away_time, tid, price, 
       level)
-    values (#{sid,jdbcType=INTEGER}, #{sname,jdbcType=VARCHAR}, #{arriveTime,jdbcType=TIMESTAMP}, 
-      #{awayTime,jdbcType=TIMESTAMP}, #{tid,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, 
+    values (#{sid,jdbcType=INTEGER}, #{sname,jdbcType=VARCHAR}, #{arriveTime,jdbcType=TIME}, 
+      #{awayTime,jdbcType=TIME}, #{tid,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, 
       #{level,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.zxy.entity.stop.stop">
@@ -64,10 +64,10 @@
         #{sname,jdbcType=VARCHAR},
       </if>
       <if test="arriveTime != null">
-        #{arriveTime,jdbcType=TIMESTAMP},
+        #{arriveTime,jdbcType=TIME},
       </if>
       <if test="awayTime != null">
-        #{awayTime,jdbcType=TIMESTAMP},
+        #{awayTime,jdbcType=TIME},
       </if>
       <if test="tid != null">
         #{tid,jdbcType=INTEGER},
@@ -87,10 +87,10 @@
         sname = #{sname,jdbcType=VARCHAR},
       </if>
       <if test="arriveTime != null">
-        arrive_time = #{arriveTime,jdbcType=TIMESTAMP},
+        arrive_time = #{arriveTime,jdbcType=TIME},
       </if>
       <if test="awayTime != null">
-        away_time = #{awayTime,jdbcType=TIMESTAMP},
+        away_time = #{awayTime,jdbcType=TIME},
       </if>
       <if test="tid != null">
         tid = #{tid,jdbcType=INTEGER},
@@ -107,8 +107,8 @@
   <update id="updateByPrimaryKey" parameterType="com.zxy.entity.stop.stop">
     update stop
     set sname = #{sname,jdbcType=VARCHAR},
-      arrive_time = #{arriveTime,jdbcType=TIMESTAMP},
-      away_time = #{awayTime,jdbcType=TIMESTAMP},
+      arrive_time = #{arriveTime,jdbcType=TIME},
+      away_time = #{awayTime,jdbcType=TIME},
       tid = #{tid,jdbcType=INTEGER},
       price = #{price,jdbcType=DECIMAL},
       level = #{level,jdbcType=INTEGER}
