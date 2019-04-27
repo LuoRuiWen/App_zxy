@@ -1,6 +1,6 @@
 package com.zxy.entity.user;
 
-public class user {
+public class User {
     private String id;
 
     private String userName;

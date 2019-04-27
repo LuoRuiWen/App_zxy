@@ -3,7 +3,7 @@ package com.zxy.entity.stop;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class stop {
+public class Stop {
     private Integer sid;
 
     private String sname;

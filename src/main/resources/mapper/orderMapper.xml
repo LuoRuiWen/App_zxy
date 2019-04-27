@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zxy.dao.order.orderMapper">
-  <resultMap id="BaseResultMap" type="com.zxy.entity.order.order">
+<mapper namespace="com.zxy.dao.order.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.zxy.entity.order.Order">
     <id column="oid" jdbcType="INTEGER" property="oid" />
     <result column="uid" jdbcType="INTEGER" property="uid" />
     <result column="tid" jdbcType="INTEGER" property="tid" />
@@ -24,7 +24,7 @@
     delete from order
     where oid = #{oid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zxy.entity.order.order">
+  <insert id="insert" parameterType="com.zxy.entity.order.Order">
     insert into order (oid, uid, tid, 
       start_sid, stop_sid, createdate, 
       status, price)
@@ -32,7 +32,7 @@
       #{startSid,jdbcType=INTEGER}, #{stopSid,jdbcType=INTEGER}, #{createdate,jdbcType=TIMESTAMP}, 
       #{status,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL})
   </insert>
-  <insert id="insertSelective" parameterType="com.zxy.entity.order.order">
+  <insert id="insertSelective" parameterType="com.zxy.entity.order.Order">
     insert into order
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="oid != null">
@@ -87,7 +87,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zxy.entity.order.order">
+  <update id="updateByPrimaryKeySelective" parameterType="com.zxy.entity.order.Order">
     update order
     <set>
       <if test="uid != null">
@@ -114,7 +114,7 @@
     </set>
     where oid = #{oid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zxy.entity.order.order">
+  <update id="updateByPrimaryKey" parameterType="com.zxy.entity.order.Order">
     update order
     set uid = #{uid,jdbcType=INTEGER},
       tid = #{tid,jdbcType=INTEGER},

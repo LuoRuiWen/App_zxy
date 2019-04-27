@@ -1,6 +1,6 @@
 package com.zxy.entity.train;
 
-public class train {
+public class Train {
     private Integer tid;
 
     private String tname;

@@ -3,7 +3,7 @@ package com.zxy.entity.order;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class order {
+public class Order {
     private Integer oid;
 
     private Integer uid;
