@@ -2,7 +2,7 @@ package com.zxy.service.impl;
 
 import com.zxy.dao.order.OrderMapper;
 import com.zxy.dao.train.TrainMapper;
-import com.zxy.service.OrderService;
+import com.zxy.service.order.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class OrderServiceImpl implements OrderService{

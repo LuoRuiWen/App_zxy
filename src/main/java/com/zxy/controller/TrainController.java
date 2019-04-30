@@ -1,13 +1,12 @@
 package com.zxy.controller;
 
 import com.zxy.entity.train.Train;
-import com.zxy.service.TrainService;
+import com.zxy.service.train.TrainService;
 import org.apache.shiro.authz.annotation.RequiresGuest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import java.util.ArrayList;
+
 import java.util.List;
 
 @RequiresGuest
@@ -31,6 +30,15 @@ public class TrainController {
      */
     @RequestMapping("/changeClock")
     public void changeClock(){
+
+    }
+
+    /**
+     * 根据时刻表查询
+     * @param model
+     * @return
+     */
+    public List getTrain(Model model){
 
     }
 

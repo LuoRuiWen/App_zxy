@@ -1,4 +1,4 @@
-package com.zxy.service;
+package com.zxy.service.order;
 
 public interface OrderService {
     void booking(Integer tid);

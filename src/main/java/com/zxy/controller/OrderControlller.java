@@ -1,6 +1,6 @@
 package com.zxy.controller;
 
-import com.zxy.service.OrderService;
+import com.zxy.service.order.OrderService;
 import org.apache.shiro.authz.annotation.RequiresGuest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

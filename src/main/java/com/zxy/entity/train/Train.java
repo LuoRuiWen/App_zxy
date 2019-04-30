@@ -4,7 +4,7 @@ public class Train {
     private Integer tid;
 
     private String tname;
-
+    //总票数
     private Integer num;
 
     public Integer getTid() {

@@ -2,7 +2,7 @@ package com.zxy.service.impl;
 
 import com.zxy.dao.train.TrainMapper;
 import com.zxy.entity.train.Train;
-import com.zxy.service.TrainService;
+import com.zxy.service.train.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
