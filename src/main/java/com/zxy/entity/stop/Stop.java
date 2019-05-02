@@ -17,7 +17,7 @@ public class Stop {
     private Date awayTime;
     //车次
     private Integer tid;
-    //时间
+    //首站到本站价格
     private BigDecimal price;
     //第几站
     private Integer level;

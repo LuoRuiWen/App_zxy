@@ -2,6 +2,8 @@ package com.zxy.dao.stop;
 
 import com.zxy.entity.stop.Stop;
 
+import java.util.List;
+
 public interface StopMapper {
     int deleteByPrimaryKey(Integer sid);
 
@@ -14,4 +16,6 @@ public interface StopMapper {
     int updateByPrimaryKeySelective(Stop record);
 
     int updateByPrimaryKey(Stop record);
+
+    List<Stop> findByTid(Integer tid);
 }

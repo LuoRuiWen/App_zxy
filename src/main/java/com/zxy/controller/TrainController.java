@@ -13,6 +13,7 @@ import java.util.List;
 @Controller
 public class TrainController {
     TrainService trainService;
+
     /**
      * 根据站点查询车次
      * @param model
@@ -43,4 +44,15 @@ public class TrainController {
         return  null;
     }
 
+    /**
+     * 获取车次列表
+     * @param model
+     * @return
+     */
+    @RequestMapping("/HomePage")
+    public String findAll(Model model){
+        List<Train> trains = trainService.findAll();
+        model.addAttribute("trains",trains);
+        return "HomePage";
+    }
 }

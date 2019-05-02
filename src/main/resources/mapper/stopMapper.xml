@@ -114,4 +114,10 @@
       level = #{level,jdbcType=INTEGER}
     where sid = #{sid,jdbcType=INTEGER}
   </update>
+  <select id="findByTid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from stop
+    where tid = #{tid,jdbcType=INTEGER}
+  </select>
 </mapper>

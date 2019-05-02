@@ -9,4 +9,6 @@ public interface TrainService {
     List<Train> findTrainByStopName(String sname);
 
     void changeClock();
+
+    List<TicketInfo> findAll();
 }
