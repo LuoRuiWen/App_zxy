@@ -38,8 +38,9 @@ public class TrainController {
      * @param model
      * @return
      */
-    public List getTrain(Model model){
+    public List getTrainByTime(Model model){
 
+        return  null;
     }
 
 }
