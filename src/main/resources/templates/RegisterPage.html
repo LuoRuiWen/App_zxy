@@ -1,40 +1,50 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>注册</title>
-    <link rel="stylesheet" th:href="@{../js/layui/css/layui.css}"/>
-</head>
-<body>
-    <div th:id="main">
-        <div th:id = "registerBox">
-            <form class="layui-form" action="/api/user/user" method="post">
-                <div class="layui-form-item">
-                    <label class="layui-form-label">姓名:</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="userName" required  lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>注册</title>
+        <link rel="stylesheet" th:href="@{../js/layui/css/layui.css}"/>
+    </head>
+    <body>
+        <div th:id="main" class="layui-main">
+            <div th:id = "registerBox">
+                <form class="layui-form" action="/api/user/user" method="post">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">姓名:</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="userName" required  lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+                        </div>
                     </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">密码：</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="userPwd" required  lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">密码：</label>
+                        <div class="layui-input-block">
+                            <input type="password" name="userPwd" required  lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                        </div>
                     </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">确认密码：</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="userPwdCheck" required  lay-verify="required" placeholder="确认密码" autocomplete="off" class="layui-input">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">确认密码：</label>
+                        <div class="layui-input-block">
+                            <input type="password" name="userPwdCheck" required  lay-verify="required" placeholder="确认密码" autocomplete="off" class="layui-input">
+                        </div>
                     </div>
-                </div>
-                <div class="layui-form-item">
-                    <div class="layui-input-block">
-                        <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
-</body>
+    </body>
+    <script type="text/javascript" th:src="@{../js/layui/layui.js}"></script>
+    <script type="text/javascript">
+        layui.use('form', function() {
+            var form = layui.form;
+            form.on('submit(formDemo)', function(data){
+                layer.msg(JSON.stringify(data.field));
+                return false;
+            });
+        });
+    </script>
 </html>
