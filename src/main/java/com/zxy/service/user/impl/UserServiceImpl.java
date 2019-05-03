@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
-    @Autowired
+    @Autowired/*(required = false)*/
     private UserDao userDao;
 
 
@@ -22,8 +22,8 @@ public class UserServiceImpl implements UserService {
         BeanUtils.copyProperties(form,user);
         String id = IdUtils.nextId();
         user.setId(id);
-        //int result = userMapper.userRegister(user);
-        int result = 1;
+        int result = userDao.insert(user);
+        //int result = 1;
         return ResultData.ok(result);
     }
 }
