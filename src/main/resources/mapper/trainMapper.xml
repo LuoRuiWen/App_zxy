@@ -20,10 +20,6 @@
     from train
     where tid = #{tid,jdbcType=INTEGER}
   </select>
-  <select id="findAll" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from train
     where tid = #{tid,jdbcType=INTEGER}
@@ -83,7 +79,7 @@
     from train t left join stop s on t.tid=s.tid
     where s.sname=#{sname}
   </select>
-  <update id="updateByPrimaryKey" parameterType="java.lang.Integer">
+  <update id="reduceTicket" parameterType="java.lang.Integer">
     update train
     set num = num-1
     where tid = #{tid,jdbcType=INTEGER}

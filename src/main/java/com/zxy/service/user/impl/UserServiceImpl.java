@@ -1,5 +1,6 @@
 package com.zxy.service.user.impl;
 
+import com.zxy.dao.user.UserDao;
 import com.zxy.entity.user.User;
 import com.zxy.model.user.form.UserRegisterForm;
 import com.zxy.service.user.UserService;
@@ -11,8 +12,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
- //   @Autowired
-//    private UserMapper userMapper;
+    @Autowired
+    private UserDao userDao;
 
 
     @Override

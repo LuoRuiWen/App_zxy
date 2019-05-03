@@ -2,7 +2,7 @@ package com.zxy.dao.user;
 
 import com.zxy.entity.user.User;
 
-public interface UserMapper {
+public interface UserDao {
     int deleteByPrimaryKey(String id);
 
     int insert(User record);
