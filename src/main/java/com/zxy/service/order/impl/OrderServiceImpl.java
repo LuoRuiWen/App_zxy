@@ -4,7 +4,9 @@ import com.zxy.dao.order.OrderMapper;
 import com.zxy.dao.train.TrainMapper;
 import com.zxy.service.order.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class OrderServiceImpl implements OrderService{
     @Autowired
     TrainMapper trainMapper;

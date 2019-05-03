@@ -54,6 +54,6 @@ public class TrainController {
     public String findAll(Model model){
         List<TicketInfo> tickets = trainService.findAll();
         model.addAttribute("tickets",tickets);
-        return "HomePage";
+        return "homePage";
     }
 }

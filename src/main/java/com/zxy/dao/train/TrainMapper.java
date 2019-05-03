@@ -1,7 +1,10 @@
 package com.zxy.dao.train;
 
 import com.zxy.entity.train.Train;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
+
 
 public interface TrainMapper {
     List<Train> findAll();

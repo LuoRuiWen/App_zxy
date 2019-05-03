@@ -1,4 +1,4 @@
-package com.zxy.service.impl;
+package com.zxy.service.train.impl;
 
 import com.zxy.dao.stop.StopMapper;
 import com.zxy.dao.train.TrainMapper;
@@ -8,10 +8,12 @@ import com.zxy.service.train.TicketInfo;
 import com.zxy.service.train.TrainService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class TrainServiceImpl implements TrainService {
     @Autowired
     TrainMapper trainMapper;
