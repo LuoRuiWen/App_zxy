@@ -6,28 +6,29 @@
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="user_pwd" jdbcType="VARCHAR" property="userPwd" />
     <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, user_name, user_pwd, flag
+    id, user_name, user_pwd, flag, mobile
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from user
+    from user_info
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from user
+    delete from user_info
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.zxy.entity.user.User">
-    insert into user (id, user_name, user_pwd, 
-      flag)
+    insert into user_info (id, user_name, user_pwd, 
+      flag, mobile)
     values (#{id,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, 
-      #{flag,jdbcType=INTEGER})
+      #{flag,jdbcType=INTEGER}, #{mobile,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zxy.entity.user.User">
-    insert into user
+    insert into user_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -40,6 +41,9 @@
       </if>
       <if test="flag != null">
         flag,
+      </if>
+      <if test="mobile != null">
+        mobile,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -55,10 +59,13 @@
       <if test="flag != null">
         #{flag,jdbcType=INTEGER},
       </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.zxy.entity.user.User">
-    update user
+    update user_info
     <set>
       <if test="userName != null">
         user_name = #{userName,jdbcType=VARCHAR},
@@ -69,14 +76,18 @@
       <if test="flag != null">
         flag = #{flag,jdbcType=INTEGER},
       </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zxy.entity.user.User">
-    update user
+    update user_info
     set user_name = #{userName,jdbcType=VARCHAR},
       user_pwd = #{userPwd,jdbcType=VARCHAR},
-      flag = #{flag,jdbcType=INTEGER}
+      flag = #{flag,jdbcType=INTEGER},
+      mobile = #{mobile,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>
