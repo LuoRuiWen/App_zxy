@@ -2,11 +2,12 @@ package com.zxy.service.train;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
-public class TicketInfo {
+public class TicketInfo implements Serializable {
     private Integer tid;
     private String tname;
     //总票数

@@ -10,26 +10,28 @@
         <span>欢迎来到xxx售票系统</span>
     </div>
     <div>
-        <form th:action="">
-            <tr>
-                <td>
-                    <input type="radio">车次查询
-                    车次：<input type="text" id="findByTNum">
-                </td>
-                <td>
-                    时间<select>
+        <form th:action="findByParam">
+            <div>
+                <label class="layui-form-label">车次：</label>
+                <input class="layui-input" name="name" type="text" style="width: 165px;">
+            </div>
+            <div>
+                <label class="layui-form-label">起始站：</label>
+                <input class="layui-input" name="name" type="text" style="width: 165px;">
+                <label class="layui-form-label">终点站：</label>
+                <input class="layui-input" name="name" type="text" style="width: 165px;">
+            </div>
+            <div>
+                <label class="layui-form-label">日期：</label>
+                <select>
                     <option></option>
                 </select>
-                </td>
-            </tr>
-            <tr>
-                <input type="radio"车站查询>
-                车站：<input type="text" id="findByStop">
-            </tr>
+            </div>
             <input type="submit" value="查询">
             <input type="reset" value="清空">
         </form>
-        <tr th:each="ticket : ${tickets}">
+        <table id="demo" lay-filter="test"></table>
+        <!--<tr th:each="ticket : ${tickets}">
             <td th:text="${ticket.tid}"></td>
             <td th:text="${ticket.tname}"></td>
             <td th:text="${ticket.start}"></td>
@@ -37,7 +39,30 @@
             <td th:text="${ticket.startTime}"></td>
             <td th:text="${ticket.endTime}"></td>
             <td th:text="${ticket.num}"></td>
-        </tr>
+        </tr>-->
     </div>
+    <script>
+        layui.use('table', function(){
+            var table = layui.table;
+
+            //第一个实例
+            table.render({
+                elem: '#demo'
+                ,height: 312
+                ,url: '/homePage' //数据接口
+                ,page: true //开启分页
+                ,cols: [[ //表头
+                    {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
+                    ,{field: 'tname', title: '车次', width:80, sort: true}
+                    ,{field: 'start', title: '始发站', width:80}
+                    ,{field: 'end', title: '始到站', width: 177}
+                    ,{field: 'startTime', title: '发时', width: 80, sort: true}
+                    ,{field: 'endTime', title: '到时', width: 80, sort: true}
+                    ,{field: 'num', title: '余票', width: 80}
+                ]]
+            });
+
+        });
+    </script>
 </body>
 </html>
