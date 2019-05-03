@@ -4,6 +4,8 @@ import com.zxy.entity.train.Train;
 import java.util.List;
 
 public interface TrainMapper {
+    List<Train> findAll();
+
     int deleteByPrimaryKey(Integer tid);
 
     int insert(Train record);

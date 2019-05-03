@@ -1,4 +1,4 @@
-package com.zxy.service.impl;
+package com.zxy.service.train.impl;
 
 import com.zxy.dao.train.TrainMapper;
 import com.zxy.entity.train.Train;
@@ -14,8 +14,18 @@ public class TrainServiceImpl implements TrainService {
 
     @Override
     public List<Train> findTrainByStopName(String sname) {
-        List<Train> trains = new ArrayList<>();
-        trains = trainMapper.selectByStopName(sname);
+        List<Train> trains = trainMapper.selectByStopName(sname);
+        return trains;
+    }
+
+    @Override
+    public void changeClock() {
+
+    }
+
+    @Override
+    public List<Train> findAll() {
+        List<Train> trains = trainMapper.findAll();
         return trains;
     }
 
