@@ -29,10 +29,14 @@
             <input type="submit" value="查询">
             <input type="reset" value="清空">
         </form>
-        <tr th:each="train : ${trains}">
-            <td th:text="${train.tid}"></td>
-            <td th:text="${train.tname}"></td>
-            <td th:text="${train.num}"></td>
+        <tr th:each="ticket : ${tickets}">
+            <td th:text="${ticket.tid}"></td>
+            <td th:text="${ticket.tname}"></td>
+            <td th:text="${ticket.start}"></td>
+            <td th:text="${ticket.end}"></td>
+            <td th:text="${ticket.startTime}"></td>
+            <td th:text="${ticket.endTime}"></td>
+            <td th:text="${ticket.num}"></td>
         </tr>
     </div>
 </body>

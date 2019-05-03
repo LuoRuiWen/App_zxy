@@ -9,8 +9,8 @@ spring:
     druid:
       name: App_zxy
       url: jdbc:mysql://47.103.5.171:3306/App_zxy?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false #oracle : jdbc:oracle:thin:@10.20.149.85:1521:ocnauto
-      username: root
-      password:
+      username: lrw
+      password: Mm123456
       driver-class-name: com.mysql.jdbc.Driver
       filters: stat
       max-active: 20

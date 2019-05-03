@@ -11,7 +11,7 @@
     </commentGenerator>
     <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                     connectionURL="jdbc:mysql://47.103.5.171:3306/App_zxy?allowMultiQueries=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false"
-                    userId="root" password=""/>
+                    userId="lrw" password="Mm123456"/>
 
     <javaModelGenerator targetPackage="com.zxy.entity.stop" targetProject="./temp"/>
     <!-- 生成用于查询的Example对象 -->

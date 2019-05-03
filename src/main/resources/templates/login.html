@@ -6,13 +6,19 @@
         <link rel="stylesheet" th:href="@{../js/layui/css/layui.css}"/>
     </head>
     <body>
-        <form class="layui-form" action="login" method="post">
-            <span>账&nbsp;&nbsp;号:</span>
-            <input class="layui-input" id="id" placeholder="请输入手机号码！" required lay-verify="required" autocomplete="off"><br/>
-            <span>密&nbsp;&nbsp;码:</span>
-            <input type="password" class="layui-input" id="userpwd" placeholder="请输入密码！" required lay-verify="required" autocomplete="off"><br/>
-            <button class="layui-btn" lay-submit lay-filter="formDemo">登&nbsp&nbsp陆</button>
-        </form>
+        <div class="layui-container">
+            <div class="layui-row">
+                <div  class="layui-col-md3">请登录到xxx火车票系统</div>
+
+            </div>
+            <form class="layui-form" action="login" method="post">
+                <span>账&nbsp;&nbsp;号:</span>
+                <input class="layui-input" id="id" placeholder="请输入手机号码！" required lay-verify="required" autocomplete="off"><br/>
+                <span>密&nbsp;&nbsp;码:</span>
+                <input type="password" class="layui-input" id="userpwd" placeholder="请输入密码！" required lay-verify="required" autocomplete="off"><br/>
+                <button class="layui-btn" lay-submit lay-filter="formDemo">登&nbsp&nbsp陆</button>
+            </form>
+        </div>
     </body>
     <script type="text/javascript" th:src="@{../js/layui/layui.js}"></script>
     <script type="text/javascript">

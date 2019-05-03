@@ -1,6 +1,7 @@
 package com.zxy.controller;
 
 import com.zxy.entity.train.Train;
+import com.zxy.service.train.TicketInfo;
 import com.zxy.service.train.TrainService;
 import org.apache.shiro.authz.annotation.RequiresGuest;
 import org.springframework.ui.Model;
@@ -49,10 +50,10 @@ public class TrainController {
      * @param model
      * @return
      */
-    @RequestMapping("/HomePage")
+    @RequestMapping("/homePage")
     public String findAll(Model model){
-        List<Train> trains = trainService.findAll();
-        model.addAttribute("trains",trains);
+        List<TicketInfo> tickets = trainService.findAll();
+        model.addAttribute("tickets",tickets);
         return "HomePage";
     }
 }
