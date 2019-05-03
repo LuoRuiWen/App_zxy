@@ -10,5 +10,5 @@ public interface TrainService {
 
     void changeClock();
 
-    List<Train> findAll();
+    List<TicketInfo> findAll();
 }

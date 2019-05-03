@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>火车票售票系统-首页</title>
+    <link rel="stylesheet" th:href="@{../js/layui/css/layui.css}"/>
+</head>
+<body>
+    <div>
+        <span>欢迎来到xxx售票系统</span>
+    </div>
+    <div>
+        <form th:action="">
+            <tr>
+                <td>
+                    <input type="radio">车次查询
+                    车次：<input type="text" id="findByTNum">
+                </td>
+                <td>
+                    时间<select>
+                    <option></option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <input type="radio"车站查询>
+                车站：<input type="text" id="findByStop">
+            </tr>
+            <input type="submit" value="查询">
+            <input type="reset" value="清空">
+        </form>
+        <tr th:each="train : ${trains}">
+            <td th:text="${train.tid}"></td>
+            <td th:text="${train.tname}"></td>
+            <td th:text="${train.num}"></td>
+        </tr>
+    </div>
+</body>
+</html>

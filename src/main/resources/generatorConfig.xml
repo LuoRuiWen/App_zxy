@@ -11,15 +11,15 @@
     </commentGenerator>
     <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                     connectionURL="jdbc:mysql://47.103.5.171:3306/App_zxy?allowMultiQueries=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false"
-                    userId="root" password=""/>
+                    userId="lrw" password="Mm123456"/>
 
-    <javaModelGenerator targetPackage="com.zxy.entity.stop" targetProject="./temp"/>
+    <javaModelGenerator targetPackage="com.zxy.entity.user" targetProject="./temp"/>
     <!-- 生成用于查询的Example对象 -->
     <sqlMapGenerator targetPackage="mapper" targetProject="./temp"/>
     <!-- 生成DAO的类文件以及配置文件 -->
-    <javaClientGenerator targetPackage="com.zxy.dao.stop" targetProject="./temp" type="XMLMAPPER"/>
+    <javaClientGenerator targetPackage="com.zxy.dao.user" targetProject="./temp" type="XMLMAPPER"/>
     <!-- 想要生成的数据库表,自动化工具会根据该表的结构生成相应的vo对象-->
-    <table tableName="stop" domainObjectName="stop" enableCountByExample="false"
+    <table tableName="user_info" domainObjectName="User" enableCountByExample="false"
            enableUpdateByExample="false"
            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
     </table>
