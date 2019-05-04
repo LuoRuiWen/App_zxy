@@ -25,14 +25,14 @@ spring:
       test-on-return: false
       pool-prepared-statements: true
       max-open-prepared-statements: 20
-  thymeleaf:
-    prefix: classpath:/templates/
-    suffix: .html
-    mode: HTML5
-    encoding: UTF-8
-    servlet:
-      content-type: text/html
-    cache: false
+#  thymeleaf:
+#    prefix: classpath:/templates/
+#    suffix: .html
+#    mode: HTML5
+#    encoding: UTF-8
+#    servlet:
+#      content-type: text/html
+#    cache: false
   resources:
     chain:
       strategy:

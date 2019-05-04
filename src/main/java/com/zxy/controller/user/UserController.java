@@ -1,33 +1,28 @@
 package com.zxy.controller.user;
 
+import com.zxy.model.user.form.UserLoginForm;
 import com.zxy.model.user.form.UserRegisterForm;
 import com.zxy.service.user.UserService;
 import com.zxy.utils.ResultData;
 import org.apache.shiro.authz.annotation.RequiresGuest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping("/api/user")
 @RequiresGuest
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/register")
-    public String turnRegister(){
-        return "RegisterPage";
+    @PostMapping("/login")
+    public ResultData login(@RequestBody UserLoginForm form){
+        return ResultData.ok(form);
     }
 
-    @PostMapping("/user")
-    public String register(@RequestBody UserRegisterForm form, Model model){
-        ResultData rd = userService.userRegister(form);
-        model.addAttribute("resultData",rd);
-        return "RegisterResultPage";
+    @PostMapping("/register")
+    public ResultData register(@RequestBody UserRegisterForm form){
+        return userService.userRegister(form);
     }
 }
