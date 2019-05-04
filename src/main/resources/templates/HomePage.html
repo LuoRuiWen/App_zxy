@@ -41,7 +41,7 @@
             <td th:text="${ticket.num}"></td>
         </tr>-->
     </div>
-    <script>
+    <script  th:inline="none">
         layui.use('table', function(){
             var table = layui.table;
 
@@ -49,10 +49,11 @@
             table.render({
                 elem: '#demo'
                 ,height: 312
-                ,url: '/homePage' //数据接口
+                ,url: 'homePage' //数据接口
                 ,page: true //开启分页
-                ,cols: [[ //表头
-                    {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
+                //表头
+                ,cols: [[
+                    {field: 'tid', title: 'ID', width:80, sort: true, fixed: 'left'}
                     ,{field: 'tname', title: '车次', width:80, sort: true}
                     ,{field: 'start', title: '始发站', width:80}
                     ,{field: 'end', title: '始到站', width: 177}

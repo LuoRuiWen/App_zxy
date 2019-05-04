@@ -1,19 +1,24 @@
 package com.zxy.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.zxy.entity.train.Train;
 import com.zxy.service.train.TicketInfo;
 import com.zxy.service.train.TrainService;
 import org.apache.shiro.authz.annotation.RequiresGuest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @RequiresGuest
 @Controller
 public class TrainController {
-    TrainService trainService;
+    @Autowired
+    private TrainService trainService;
 
     /**
      * 根据站点查询车次
@@ -47,13 +52,19 @@ public class TrainController {
 
     /**
      * 获取车次列表
-     * @param model
      * @return
      */
     @RequestMapping("/homePage")
-    public String findAll(Model model){
+    @ResponseBody
+    public String findAll(){
+        JSONObject json = new JSONObject();
         List<TicketInfo> tickets = trainService.findAll();
-        model.addAttribute("tickets",tickets);
+        json.put("tickets",tickets);
+        return json.toJSONString();
+    }
+
+    @RequestMapping("/index")
+    public String list(){
         return "homePage";
     }
 }
