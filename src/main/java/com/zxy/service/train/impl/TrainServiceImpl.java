@@ -6,6 +6,7 @@ import com.zxy.entity.stop.Stop;
 import com.zxy.entity.train.Train;
 import com.zxy.service.train.TicketInfo;
 import com.zxy.service.train.TrainService;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @Service
 public class TrainServiceImpl implements TrainService {
+    private Logger logger;
     @Autowired
     TrainMapper trainMapper;
     @Autowired
@@ -58,6 +60,7 @@ public class TrainServiceImpl implements TrainService {
             ticketInfo.setEnd(end.getSname());
             ticketInfo.setEndTime(end.getArriveTime());
             ticketInfo.setPrice(end.getPrice());
+            list.add(ticketInfo);
         }
         return list;
     }
