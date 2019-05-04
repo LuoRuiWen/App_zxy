@@ -8,7 +8,7 @@
     <result column="flag" jdbcType="INTEGER" property="flag" />
     <result column="mobile" jdbcType="VARCHAR" property="mobile" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
-    <result column="is_deleted" jdbcType="TIMESTAMP" property="isDeleted"/>
+    <result column="is_deleted" jdbcType="INTEGER" property="isDeleted"/>
   </resultMap>
   <sql id="Base_Column_List">
     id, user_name, user_pwd, flag, mobile
@@ -34,7 +34,7 @@
     insert into user_info (id, user_name, user_pwd, 
       flag, mobile,create_time)
     values (#{id,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, 
-      2, #{mobile,jdbcType=VARCHAR},#{createTime,jdbcType=VARCHAR})
+      2, #{mobile,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP})
   </insert>
 
 

@@ -40,7 +40,10 @@ public class UserServiceImpl implements UserService {
 
     public ResultData userLogin(UserLoginForm form){
         User user = userDao.loginQuery(form.getMobile());
-        if(!user.getUserPwd().equals(passwordEncorder.encode(form.getPassword()))){
+        if(user==null){
+            return ResultData.error(501,"用户不存在！");
+        }
+        if(!passwordEncorder.matches(form.getPassword(),user.getUserPwd())){
             return ResultData.error(501,"密码错误！");
         }
         return ResultData.ok(0);
