@@ -18,7 +18,7 @@ public class UserController {
 
     @PostMapping("/login")
     public ResultData login(@RequestBody UserLoginForm form){
-        return ResultData.ok(form);
+        return userService.userLogin(form);
     }
 
     @PostMapping("/register")

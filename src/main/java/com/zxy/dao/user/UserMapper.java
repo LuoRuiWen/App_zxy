@@ -7,6 +7,8 @@ public interface UserMapper {
 
     int insert(User record);
 
+    User loginQuery(String mobile);
+
     int insertSelective(User record);
 
     User selectByPrimaryKey(String id);
