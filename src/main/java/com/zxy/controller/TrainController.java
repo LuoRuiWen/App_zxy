@@ -54,7 +54,7 @@ public class TrainController {
      * 获取车次列表
      * @return
      */
-    @RequestMapping("/homePage")
+    @RequestMapping("/list")
     @ResponseBody
     public String findAll(){
         JSONObject json = new JSONObject();
