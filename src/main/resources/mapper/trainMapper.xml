@@ -20,6 +20,12 @@
     from train
     where tid = #{tid,jdbcType=INTEGER}
   </select>
+  <select id="findByTname" parameterType="String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from train
+    where tname = #{tname,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from train
     where tid = #{tid,jdbcType=INTEGER}
