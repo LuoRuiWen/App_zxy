@@ -10,15 +10,27 @@ import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RequiresGuest
-@Controller
+@RestController
 public class TrainController {
     @Autowired
     private TrainService trainService;
+
+    /**
+     * 根据车次查询
+     * @param tname
+     * @return
+     */
+    public String getTrainByTname(Integer tname){
+        JSONObject json = new JSONObject();
+        List<TicketInfo> tickets = trainService.findAll();
+        json.put("tickets",tickets);
+        return json.toJSONString();
+    }
 
     /**
      * 根据站点查询车次
@@ -56,11 +68,9 @@ public class TrainController {
      */
     @RequestMapping("/list")
     @ResponseBody
-    public String findAll(){
-        JSONObject json = new JSONObject();
+    public List<TicketInfo> findAll(){
         List<TicketInfo> tickets = trainService.findAll();
-        json.put("tickets",tickets);
-        return json.toJSONString();
+        return tickets;
     }
 
     @RequestMapping("/index")

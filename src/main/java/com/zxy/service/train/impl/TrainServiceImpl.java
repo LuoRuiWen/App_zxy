@@ -11,6 +11,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +36,7 @@ public class TrainServiceImpl implements TrainService {
 
     @Override
     public List<TicketInfo> findAll() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd HH:mm");
         List<TicketInfo> list = new ArrayList<>();
         List<Train> trains = trainMapper.findAll();
         for(Train train:trains){
@@ -56,9 +58,9 @@ public class TrainServiceImpl implements TrainService {
                 }
             }
             ticketInfo.setStart(start.getSname());
-            ticketInfo.setStartTime(start.getAwayTime());
+            ticketInfo.setStartTime(dateFormat.format(start.getAwayTime()));
             ticketInfo.setEnd(end.getSname());
-            ticketInfo.setEndTime(end.getArriveTime());
+            ticketInfo.setEndTime(dateFormat.format(end.getArriveTime()));
             ticketInfo.setPrice(end.getPrice());
             list.add(ticketInfo);
         }
