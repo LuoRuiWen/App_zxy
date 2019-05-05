@@ -26,4 +26,6 @@ public interface TrainMapper {
     void reduceTicket(Integer tid);
 
     void addTicket(Integer tid);
+
+    List<Train> findByTname(String tname);
 }

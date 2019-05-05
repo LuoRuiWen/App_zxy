@@ -1,6 +1,7 @@
 package com.zxy.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.zxy.entity.stop.Stop;
 import com.zxy.entity.train.Train;
 import com.zxy.service.train.TicketInfo;
 import com.zxy.service.train.TrainService;
@@ -21,27 +22,35 @@ public class TrainController {
     private TrainService trainService;
 
     /**
-     * 根据车次查询
+     * 根据车次名查询车次列表
      * @param tname
      * @return
      */
-    public String getTrainByTname(Integer tname){
-        JSONObject json = new JSONObject();
-        List<TicketInfo> tickets = trainService.findAll();
-        json.put("tickets",tickets);
-        return json.toJSONString();
+    @RequestMapping("/findByTname")
+    public List<TicketInfo> getTrainByTname(String tname){
+        List<TicketInfo> tickets = trainService.findByTname(tname);
+        return tickets;
     }
 
     /**
-     * 根据站点查询车次
-     * @param model
+     * 根据始末站点查询车次
      * @return
      */
     @RequestMapping("/findBySname")
-    public String getTrain(Model model){
-        List<Train> trains = trainService.findTrainByStopName("大雁");
-        model.addAttribute("trains",trains);
-        return "";
+    public List<TicketInfo> getTrain(String start,String end){
+        List<TicketInfo> ticketInfos = trainService.findTrainByStopName(start,end);
+        return ticketInfos;
+    }
+
+    /**
+     * 查询列车所有站点
+     * @param tid
+     * @return
+     */
+    @RequestMapping("/findStops")
+    public List<Stop> findStops(Integer tid){
+        List<Stop> stops = trainService.findStops(tid);
+        return  stops;
     }
 
     /**
@@ -71,10 +80,5 @@ public class TrainController {
     public List<TicketInfo> findAll(){
         List<TicketInfo> tickets = trainService.findAll();
         return tickets;
-    }
-
-    @RequestMapping("/index")
-    public String list(){
-        return "homePage";
     }
 }
