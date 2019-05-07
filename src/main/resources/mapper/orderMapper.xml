@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zxy.dao.order.OrderMapper">
   <resultMap id="BaseResultMap" type="com.zxy.entity.order.Order">
-    <id column="oid" jdbcType="INTEGER" property="oid" />
-    <result column="uid" jdbcType="INTEGER" property="uid" />
-    <result column="tid" jdbcType="INTEGER" property="tid" />
-    <result column="start_sid" jdbcType="INTEGER" property="startSid" />
-    <result column="stop_sid" jdbcType="INTEGER" property="stopSid" />
+    <id column="oid" jdbcType="VARCHAR" property="oid" />
+    <result column="uid" jdbcType="VARCHAR" property="uid" />
+    <result column="tid" jdbcType="VARCHAR" property="tid" />
+    <result column="start_sid" jdbcType="VARCHAR" property="startSid" />
+    <result column="stop_sid" jdbcType="VARCHAR" property="stopSid" />
     <result column="createdate" jdbcType="TIMESTAMP" property="createdate" />
     <result column="status" jdbcType="VARCHAR" property="status" />
     <result column="price" jdbcType="DECIMAL" property="price" />
@@ -14,22 +14,28 @@
   <sql id="Base_Column_List">
     oid, uid, tid, start_sid, stop_sid, createdate, status, price
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from order
-    where oid = #{oid,jdbcType=INTEGER}
+    where oid = #{oid,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <select id="findAll" parameterType="String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from order
+    where uid = #{uid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="String">
     delete from order
-    where oid = #{oid,jdbcType=INTEGER}
+    where oid = #{oid,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.zxy.entity.order.Order">
     insert into order (oid, uid, tid, 
       start_sid, stop_sid, createdate, 
       status, price)
-    values (#{oid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{tid,jdbcType=INTEGER}, 
-      #{startSid,jdbcType=INTEGER}, #{stopSid,jdbcType=INTEGER}, #{createdate,jdbcType=TIMESTAMP}, 
+    values (#{oid,jdbcType=VARCHAR}, #{uid,jdbcType=VARCHAR}, #{tid,jdbcType=VARCHAR},
+      #{startSid,jdbcType=VARCHAR}, #{stopSid,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP},
       #{status,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL})
   </insert>
   <insert id="insertSelective" parameterType="com.zxy.entity.order.Order">
@@ -62,19 +68,19 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="oid != null">
-        #{oid,jdbcType=INTEGER},
+        #{oid,jdbcType=VARCHAR},
       </if>
       <if test="uid != null">
-        #{uid,jdbcType=INTEGER},
+        #{uid,jdbcType=VARCHAR},
       </if>
       <if test="tid != null">
-        #{tid,jdbcType=INTEGER},
+        #{tid,jdbcType=VARCHAR},
       </if>
       <if test="startSid != null">
-        #{startSid,jdbcType=INTEGER},
+        #{startSid,jdbcType=VARCHAR},
       </if>
       <if test="stopSid != null">
-        #{stopSid,jdbcType=INTEGER},
+        #{stopSid,jdbcType=VARCHAR},
       </if>
       <if test="createdate != null">
         #{createdate,jdbcType=TIMESTAMP},
@@ -91,16 +97,16 @@
     update order
     <set>
       <if test="uid != null">
-        uid = #{uid,jdbcType=INTEGER},
+        uid = #{uid,jdbcType=VARCHAR},
       </if>
       <if test="tid != null">
-        tid = #{tid,jdbcType=INTEGER},
+        tid = #{tid,jdbcType=VARCHAR},
       </if>
       <if test="startSid != null">
-        start_sid = #{startSid,jdbcType=INTEGER},
+        start_sid = #{startSid,jdbcType=VARCHAR},
       </if>
       <if test="stopSid != null">
-        stop_sid = #{stopSid,jdbcType=INTEGER},
+        stop_sid = #{stopSid,jdbcType=VARCHAR},
       </if>
       <if test="createdate != null">
         createdate = #{createdate,jdbcType=TIMESTAMP},
@@ -112,17 +118,22 @@
         price = #{price,jdbcType=DECIMAL},
       </if>
     </set>
-    where oid = #{oid,jdbcType=INTEGER}
+    where oid = #{oid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zxy.entity.order.Order">
     update order
-    set uid = #{uid,jdbcType=INTEGER},
-      tid = #{tid,jdbcType=INTEGER},
-      start_sid = #{startSid,jdbcType=INTEGER},
-      stop_sid = #{stopSid,jdbcType=INTEGER},
+    set uid = #{uid,jdbcType=VARCHAR},
+      tid = #{tid,jdbcType=VARCHAR},
+      start_sid = #{startSid,jdbcType=VARCHAR},
+      stop_sid = #{stopSid,jdbcType=VARCHAR},
       createdate = #{createdate,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=VARCHAR},
       price = #{price,jdbcType=DECIMAL}
-    where oid = #{oid,jdbcType=INTEGER}
+    where oid = #{oid,jdbcType=VARCHAR}
+  </update>
+  <update id="refund" parameterType="String">
+  update order
+  set status = '已退',
+  where oid = #{oid,jdbcType=VARCHAR}
   </update>
 </mapper>

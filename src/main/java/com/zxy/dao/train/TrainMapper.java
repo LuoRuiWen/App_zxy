@@ -9,13 +9,13 @@ import java.util.List;
 public interface TrainMapper {
     List<Train> findAll();
 
-    int deleteByPrimaryKey(Integer tid);
+    int deleteByPrimaryKey(String tid);
 
     int insert(Train record);
 
     int insertSelective(Train record);
 
-    Train selectByPrimaryKey(Integer tid);
+    Train selectByPrimaryKey(String tid);
 
     int updateByPrimaryKeySelective(Train record);
 
@@ -23,9 +23,9 @@ public interface TrainMapper {
 
     List<Train> selectByStopName(String sname);
 
-    void reduceTicket(Integer tid);
+    void reduceTicket(String tid);
 
-    void addTicket(Integer tid);
+    void addTicket(String tid);
 
     List<Train> findByTname(String tname);
 }

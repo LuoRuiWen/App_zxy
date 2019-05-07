@@ -8,15 +8,15 @@ import java.util.Date;
 @Data
 public class Order {
     //订单id
-    private Integer oid;
+    private String oid;
     //用户id
-    private Integer uid;
+    private String uid;
     //车次id
-    private Integer tid;
+    private String tid;
     //起点站id
-    private Integer startSid;
+    private String startSid;
     //终点站id
-    private Integer stopSid;
+    private String stopSid;
     //订单创建时间
     private Date createdate;
     //订单状态
@@ -24,43 +24,67 @@ public class Order {
     //订单价格
     private BigDecimal price;
 
-    public Integer getOid() {
+    private String startName;
+
+    private String endName;
+
+    private Date startTime;
+
+    private Date endTime;
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public String getOid() {
         return oid;
     }
 
-    public void setOid(Integer oid) {
+    public void setOid(String oid) {
         this.oid = oid;
     }
 
-    public Integer getUid() {
+    public String getUid() {
         return uid;
     }
 
-    public void setUid(Integer uid) {
+    public void setUid(String uid) {
         this.uid = uid;
     }
 
-    public Integer getTid() {
+    public String getTid() {
         return tid;
     }
 
-    public void setTid(Integer tid) {
+    public void setTid(String tid) {
         this.tid = tid;
     }
 
-    public Integer getStartSid() {
+    public String getStartSid() {
         return startSid;
     }
 
-    public void setStartSid(Integer startSid) {
+    public void setStartSid(String startSid) {
         this.startSid = startSid;
     }
 
-    public Integer getStopSid() {
+    public String getStopSid() {
         return stopSid;
     }
 
-    public void setStopSid(Integer stopSid) {
+    public void setStopSid(String stopSid) {
         this.stopSid = stopSid;
     }
 
@@ -86,5 +110,21 @@ public class Order {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getStartName() {
+        return startName;
+    }
+
+    public void setStartName(String startName) {
+        this.startName = startName;
+    }
+
+    public String getEndName() {
+        return endName;
+    }
+
+    public void setEndName(String endName) {
+        this.endName = endName;
     }
 }

@@ -26,28 +26,42 @@ public class OrderServiceImpl implements OrderService{
     StopMapper stopMapper;
 
     @Override
-    public void booking(Integer tid, BigDecimal price, String start, String end) {
+    public void booking(RuleForm ruleForm) {
         //减少票余量
-        trainMapper.reduceTicket(tid);
+        trainMapper.reduceTicket(ruleForm.getTid());
         //添加订单
         Order order = new Order();
 //        Integer uid =
-        order.setTid(tid);
+        order.setTid(ruleForm.getTid());
         order.setCreatedate(new Date());
-        order.setPrice(price);
-        order.setStatus("已完成");
-        List<Stop> stops = stopMapper.findByTid(tid);
+        order.setPrice(ruleForm.getPrice());
+        order.setStatus("购买成功");
+        List<Stop> stops = stopMapper.findByTid(ruleForm.getTid());
         for (Stop stop:stops){
-            if(stop.equals(start)){
+            if(stop.equals(ruleForm.getStart())){
                 order.setStartSid(stop.getSid());
-            }else if(stop.equals(end)){
+                order.setStartTime(stop.getAwayTime());
+            }else if(stop.equals(ruleForm.getEnd())){
                 order.setStopSid(stop.getSid());
+                order.setEndTime(stop.getArriveTime());
             }
         }
     }
 
     @Override
-    public void refund(Integer oid) {
-//        orderMapper.updateByPrimaryKey(oid);
+    public Boolean refund(String oid) {
+        //首先查找到此订单查看订单出发时间
+        Order order = orderMapper.selectByPrimaryKey(oid);
+        int flag= order.getStartTime().compareTo(new Date());
+        if(flag>1){
+            orderMapper.refund(oid);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public List<Order> findAll(String uid) {
+        return orderMapper.findAll(uid);
     }
 }

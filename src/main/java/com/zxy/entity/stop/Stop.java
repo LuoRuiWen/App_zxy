@@ -8,7 +8,7 @@ import java.util.Date;
 @Data
 public class Stop {
     //站点id
-    private Integer sid;
+    private String sid;
     //站点名称
     private String sname;
     //到达时间
@@ -16,17 +16,17 @@ public class Stop {
     //离开时间
     private Date awayTime;
     //车次
-    private Integer tid;
+    private String tid;
     //首站到本站价格
     private BigDecimal price;
     //第几站
     private Integer level;
 
-    public Integer getSid() {
+    public String getSid() {
         return sid;
     }
 
-    public void setSid(Integer sid) {
+    public void setSid(String sid) {
         this.sid = sid;
     }
 
@@ -54,11 +54,11 @@ public class Stop {
         this.awayTime = awayTime;
     }
 
-    public Integer getTid() {
+    public String getTid() {
         return tid;
     }
 
-    public void setTid(Integer tid) {
+    public void setTid(String tid) {
         this.tid = tid;
     }
 

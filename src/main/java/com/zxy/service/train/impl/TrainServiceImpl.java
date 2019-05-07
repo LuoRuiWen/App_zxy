@@ -129,7 +129,7 @@ public class TrainServiceImpl implements TrainService {
     }
 
     @Override
-    public List<Stop> findStops(Integer tid) {
+    public List<Stop> findStops(String tid) {
         List<Stop> stops = stopMapper.findByTid(tid);
 
         return stops;

@@ -48,7 +48,7 @@ public class TrainController {
      * @return
      */
     @RequestMapping("/findStops")
-    public List<Stop> findStops(Integer tid){
+    public List<Stop> findStops(String tid){
         List<Stop> stops = trainService.findStops(tid);
         return  stops;
     }

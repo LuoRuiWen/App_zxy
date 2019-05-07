@@ -3,7 +3,7 @@ package com.zxy.entity.order;
 import java.math.BigDecimal;
 
 public class RuleForm {
-    private Integer tid;
+    private String tid;
     private String name;
     private String IdNum;
     private Boolean student;
@@ -11,11 +11,11 @@ public class RuleForm {
     private String start;
     private String end;
 
-    public Integer getTid() {
+    public String getTid() {
         return tid;
     }
 
-    public void setTid(Integer tid) {
+    public void setTid(String tid) {
         this.tid = tid;
     }
 

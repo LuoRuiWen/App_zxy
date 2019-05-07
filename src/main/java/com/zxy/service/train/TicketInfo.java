@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Data
 public class TicketInfo implements Serializable {
-    private Integer tid;
+    private String tid;
     private String tname;
     //总票数
     private Integer num;
@@ -23,11 +23,11 @@ public class TicketInfo implements Serializable {
     //票价
     private BigDecimal price;
 
-    public Integer getTid() {
+    public String getTid() {
         return tid;
     }
 
-    public void setTid(Integer tid) {
+    public void setTid(String tid) {
         this.tid = tid;
     }
 

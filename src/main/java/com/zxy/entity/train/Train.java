@@ -5,17 +5,17 @@ import lombok.Data;
 
 @Data
 public class Train {
-    private Integer tid;
+    private String tid;
 
     private String tname;
     //总票数
     private Integer num;
 
-    public Integer getTid() {
+    public String getTid() {
         return tid;
     }
 
-    public void setTid(Integer tid) {
+    public void setTid(String tid) {
         this.tid = tid;
     }
 
