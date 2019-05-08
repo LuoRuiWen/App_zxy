@@ -18,7 +18,7 @@ public class Stop {
     //车次
     private String tid;
     //首站到本站价格
-    private BigDecimal price;
+    private Double price;
     //第几站
     private Integer level;
 
@@ -62,11 +62,11 @@ public class Stop {
         this.tid = tid;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

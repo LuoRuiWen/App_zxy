@@ -22,7 +22,7 @@ public class Order {
     //订单状态
     private String status;
     //订单价格
-    private BigDecimal price;
+    private Double price;
 
     private String startName;
 
@@ -104,11 +104,11 @@ public class Order {
         this.status = status;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
