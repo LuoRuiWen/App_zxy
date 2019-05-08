@@ -95,4 +95,15 @@
     set num = num+1
     where tid = #{tid,jdbcType=VARCHAR}
   </update>
+
+  <resultMap id="JoinMap" type="com.zxy.model.backstage.QueryTrainListResultForm">
+    <id column="tid" jdbcType="VARCHAR" property="tid" />
+    <result column="tname" jdbcType="VARCHAR" property="tname" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="awayTime" jdbcType="TIMESTAMP" property="arriveTime"/>
+    <result column="arriveTime" jdbcType="TIMESTAMP" property="arriveTime"/>
+  </resultMap>
+  <select id="findByArriveTime" parameterType="Date" resultMap="BaseResultMap">
+
+  </select>
 </mapper>

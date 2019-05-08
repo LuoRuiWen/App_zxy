@@ -46,6 +46,6 @@ public class UserServiceImpl implements UserService {
         if(!passwordEncorder.matches(form.getPassword(),user.getUserPwd())){
             return ResultData.error(501,"密码错误！");
         }
-        return ResultData.ok(0);
+        return ResultData.ok(user);
     }
 }

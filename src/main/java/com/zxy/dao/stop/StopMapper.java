@@ -18,4 +18,7 @@ public interface StopMapper {
     int updateByPrimaryKey(Stop record);
 
     List<Stop> findByTid(String tid);
+
+    int addStops(List<Stop> stops);
+
 }

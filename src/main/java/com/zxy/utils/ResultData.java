@@ -15,6 +15,9 @@ public class ResultData<T> {
     private Integer code;
 
     private T data;
+    public static ResultData ok(){
+        return new ResultData("",0,null);
+    }
 
     public static ResultData ok(Object t){
         return new ResultData("",0,t);

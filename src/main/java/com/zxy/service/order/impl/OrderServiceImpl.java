@@ -7,12 +7,9 @@ import com.zxy.entity.order.Order;
 import com.zxy.entity.order.RuleForm;
 import com.zxy.entity.stop.Stop;
 import com.zxy.service.order.OrderService;
-import com.zxy.service.train.TicketInfo;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 

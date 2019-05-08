@@ -1,5 +1,6 @@
 package com.zxy.dao.train;
 
+import com.zxy.entity.stop.Stop;
 import com.zxy.entity.train.Train;
 import org.springframework.stereotype.Repository;
 
@@ -28,4 +29,6 @@ public interface TrainMapper {
     void addTicket(String tid);
 
     List<Train> findByTname(String tname);
+
+
 }
