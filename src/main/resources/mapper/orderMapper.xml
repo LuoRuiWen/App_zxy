@@ -134,6 +134,6 @@
   <update id="refund" parameterType="String">
   update order
   set status = '已退',
-  where oid = #{oid,jdbcType=VARCHAR}s
+  where oid = #{oid,jdbcType=VARCHAR}
   </update>
 </mapper>
