@@ -7,7 +7,7 @@
     <result column="arriveTime" jdbcType="TIME" property="arriveTime" />
     <result column="awayTime" jdbcType="TIME" property="awayTime" />
     <result column="tid" jdbcType="VARCHAR" property="tid" />
-    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
     <result column="level" jdbcType="INTEGER" property="level" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -28,7 +28,7 @@
       awayTime, tid, price,
       level)
     values (#{sid,jdbcType=VARCHAR}, #{sname,jdbcType=VARCHAR}, #{arriveTime,jdbcType=TIME},
-      #{awayTime,jdbcType=TIME}, #{tid,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL},
+      #{awayTime,jdbcType=TIME}, #{tid,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE},
       #{level,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.zxy.entity.stop.Stop">
@@ -96,7 +96,7 @@
         tid = #{tid,jdbcType=VARCHAR},
       </if>
       <if test="price != null">
-        price = #{price,jdbcType=DECIMAL},
+        price = #{price,jdbcType=DOUBLE},
       </if>
       <if test="level != null">
         level = #{level,jdbcType=INTEGER},
@@ -110,7 +110,7 @@
       arriveTime = #{arriveTime,jdbcType=TIME},
       awayTime = #{awayTime,jdbcType=TIME},
       tid = #{tid,jdbcType=VARCHAR},
-      price = #{price,jdbcType=DECIMAL},
+      price = #{price,jdbcType=DOUBLE},
       level = #{level,jdbcType=INTEGER}
     where sid = #{sid,jdbcType=VARCHAR}
   </update>

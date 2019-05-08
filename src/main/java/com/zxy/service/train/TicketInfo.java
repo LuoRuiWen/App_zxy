@@ -21,7 +21,7 @@ public class TicketInfo implements Serializable {
     //到达终点时间
     private String endTime;
     //票价
-    private BigDecimal price;
+    private Double price;
 
     public String getTid() {
         return tid;
@@ -79,11 +79,11 @@ public class TicketInfo implements Serializable {
         this.endTime = endTime;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 }

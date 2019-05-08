@@ -7,7 +7,7 @@ public class RuleForm {
     private String name;
     private String IdNum;
     private Boolean student;
-    private BigDecimal price;
+    private Double price;
     private String start;
     private String end;
 
@@ -43,11 +43,11 @@ public class RuleForm {
         this.student = student;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
