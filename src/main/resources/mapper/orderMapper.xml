@@ -9,7 +9,7 @@
     <result column="stop_sid" jdbcType="VARCHAR" property="stopSid" />
     <result column="createdate" jdbcType="TIMESTAMP" property="createdate" />
     <result column="status" jdbcType="VARCHAR" property="status" />
-    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
   </resultMap>
   <sql id="Base_Column_List">
     oid, uid, tid, start_sid, stop_sid, createdate, status, price
@@ -36,7 +36,7 @@
       status, price)
     values (#{oid,jdbcType=VARCHAR}, #{uid,jdbcType=VARCHAR}, #{tid,jdbcType=VARCHAR},
       #{startSid,jdbcType=VARCHAR}, #{stopSid,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP},
-      #{status,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL})
+      #{status,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" parameterType="com.zxy.entity.order.Order">
     insert into order
@@ -89,7 +89,7 @@
         #{status,jdbcType=VARCHAR},
       </if>
       <if test="price != null">
-        #{price,jdbcType=DECIMAL},
+        #{price,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
@@ -115,7 +115,7 @@
         status = #{status,jdbcType=VARCHAR},
       </if>
       <if test="price != null">
-        price = #{price,jdbcType=DECIMAL},
+        price = #{price,jdbcType=DOUBLE},
       </if>
     </set>
     where oid = #{oid,jdbcType=VARCHAR}
@@ -128,7 +128,7 @@
       stop_sid = #{stopSid,jdbcType=VARCHAR},
       createdate = #{createdate,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=VARCHAR},
-      price = #{price,jdbcType=DECIMAL}
+      price = #{price,jdbcType=DOUBLE}
     where oid = #{oid,jdbcType=VARCHAR}
   </update>
   <update id="refund" parameterType="String">
