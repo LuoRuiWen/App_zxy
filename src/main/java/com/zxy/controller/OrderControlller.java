@@ -3,7 +3,6 @@ package com.zxy.controller;
 import com.zxy.entity.order.Order;
 import com.zxy.entity.order.RuleForm;
 import com.zxy.service.order.OrderService;
-import com.zxy.service.train.TicketInfo;
 import com.zxy.service.train.TrainService;
 import org.apache.shiro.authz.annotation.RequiresGuest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @RequiresGuest
-@Controller
+@RestController
 public class OrderControlller {
     @Autowired
     OrderService orderService;
@@ -40,7 +40,6 @@ public class OrderControlller {
     public void booking(@RequestBody RuleForm ruleForm){
         System.out.println("信息"+ruleForm.getTid());
         orderService.booking(ruleForm);
-
     }
 
     /**

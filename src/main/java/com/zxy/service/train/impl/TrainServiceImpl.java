@@ -45,7 +45,7 @@ public class TrainServiceImpl implements TrainService {
                     s = stop.getLevel();
                 }else if(stop.getSname().equals(end)){
                     ticketInfo.setEnd(stop.getSname());
-                    ticketInfo.setEndTime(dateFormat.format(stop.getAwayTime()));
+                    ticketInfo.setEndTime(dateFormat.format(stop.getArriveTime()));
                     ticketInfo.setPrice(stop.getPrice());
                     e=stop.getLevel();
                 }

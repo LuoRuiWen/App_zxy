@@ -7,6 +7,7 @@ import com.zxy.entity.order.Order;
 import com.zxy.entity.order.RuleForm;
 import com.zxy.entity.stop.Stop;
 import com.zxy.service.order.OrderService;
+import com.zxy.utils.IdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,8 @@ public class OrderServiceImpl implements OrderService{
         trainMapper.reduceTicket(ruleForm.getTid());
         //添加订单
         Order order = new Order();
-//        Integer uid =
+        String id = IdUtils.nextId();
+        order.setOid(id);
         order.setTid(ruleForm.getTid());
         order.setUid(ruleForm.getUid());
         order.setCreatedate(new Date());
@@ -41,12 +43,14 @@ public class OrderServiceImpl implements OrderService{
         order.setStatus("购买成功");
         List<Stop> stops = stopMapper.findByTid(ruleForm.getTid());
         for (Stop stop:stops){
-            if(stop.equals(ruleForm.getStart())){
+            if(ruleForm.getStart().equals(stop.getSname())){
                 order.setStartSid(stop.getSid());
                 order.setStartTime(stop.getAwayTime());
-            }else if(stop.equals(ruleForm.getEnd())){
+                order.setStartName(stop.getSname());
+            }else if(ruleForm.getEnd().equals(stop.getSname())){
                 order.setStopSid(stop.getSid());
                 order.setEndTime(stop.getArriveTime());
+                order.setEndName(stop.getSname());
             }
         }
         orderMapper.insert(order);

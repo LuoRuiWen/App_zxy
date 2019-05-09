@@ -5,41 +5,41 @@
     <id column="oid" jdbcType="VARCHAR" property="oid" />
     <result column="uid" jdbcType="VARCHAR" property="uid" />
     <result column="tid" jdbcType="VARCHAR" property="tid" />
-    <result column="start_sid" jdbcType="VARCHAR" property="startSid" />
-    <result column="stop_sid" jdbcType="VARCHAR" property="stopSid" />
+    <result column="startSid" jdbcType="VARCHAR" property="startSid" />
+    <result column="endSid" jdbcType="VARCHAR" property="stopSid" />
     <result column="createdate" jdbcType="TIMESTAMP" property="createdate" />
     <result column="status" jdbcType="VARCHAR" property="status" />
     <result column="price" jdbcType="DOUBLE" property="price" />
   </resultMap>
   <sql id="Base_Column_List">
-    oid, uid, tid, start_sid, stop_sid, createdate, status, price
+    oid, uid, tid, startSid, endSid, createdate, status, price
   </sql>
   <select id="selectByPrimaryKey" parameterType="String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from order
+    from `order`
     where oid = #{oid,jdbcType=VARCHAR}
   </select>
   <select id="findAll" parameterType="String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from order
+    from `order`
     where uid = #{uid,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="String">
-    delete from order
+    delete from `order`
     where oid = #{oid,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.zxy.entity.order.Order">
-    insert into order (oid, uid, tid, 
-      start_sid, stop_sid, createdate, 
+    insert into `order` (oid, uid, tid,
+      startSid, endSid, createdate,
       status, price)
     values (#{oid,jdbcType=VARCHAR}, #{uid,jdbcType=VARCHAR}, #{tid,jdbcType=VARCHAR},
       #{startSid,jdbcType=VARCHAR}, #{stopSid,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP},
       #{status,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" parameterType="com.zxy.entity.order.Order">
-    insert into order
+    insert into `order`
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="oid != null">
         oid,
@@ -51,10 +51,10 @@
         tid,
       </if>
       <if test="startSid != null">
-        start_sid,
+        startSid,
       </if>
       <if test="stopSid != null">
-        stop_sid,
+        endSid,
       </if>
       <if test="createdate != null">
         createdate,
@@ -94,7 +94,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.zxy.entity.order.Order">
-    update order
+    update `order`
     <set>
       <if test="uid != null">
         uid = #{uid,jdbcType=VARCHAR},
@@ -103,10 +103,10 @@
         tid = #{tid,jdbcType=VARCHAR},
       </if>
       <if test="startSid != null">
-        start_sid = #{startSid,jdbcType=VARCHAR},
+        startSid = #{startSid,jdbcType=VARCHAR},
       </if>
       <if test="stopSid != null">
-        stop_sid = #{stopSid,jdbcType=VARCHAR},
+        endSid = #{stopSid,jdbcType=VARCHAR},
       </if>
       <if test="createdate != null">
         createdate = #{createdate,jdbcType=TIMESTAMP},
@@ -121,18 +121,18 @@
     where oid = #{oid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zxy.entity.order.Order">
-    update order
+    update `order`
     set uid = #{uid,jdbcType=VARCHAR},
       tid = #{tid,jdbcType=VARCHAR},
-      start_sid = #{startSid,jdbcType=VARCHAR},
-      stop_sid = #{stopSid,jdbcType=VARCHAR},
+      startSid = #{startSid,jdbcType=VARCHAR},
+      endSid = #{stopSid,jdbcType=VARCHAR},
       createdate = #{createdate,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=VARCHAR},
       price = #{price,jdbcType=DOUBLE}
     where oid = #{oid,jdbcType=VARCHAR}
   </update>
   <update id="refund" parameterType="String">
-  update order
+  update `order`
   set status = '已退',
   where oid = #{oid,jdbcType=VARCHAR}
   </update>
