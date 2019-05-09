@@ -16,4 +16,6 @@ public interface TrainService {
     List<TicketInfo> findByTname(String tname);
 
     List<Stop> findStops(String tid);
+
+    void addTicket(String tid);
 }

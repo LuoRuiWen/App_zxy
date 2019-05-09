@@ -135,5 +135,10 @@ public class TrainServiceImpl implements TrainService {
         return stops;
     }
 
+    @Override
+    public void addTicket(String tid) {
+        trainMapper.addTicket(tid);
+    }
+
 
 }

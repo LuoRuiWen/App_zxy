@@ -13,4 +13,6 @@ public interface OrderService {
     Boolean refund(String oid);
 
     List<Order> findAll(String uid);
+
+    Order findOne(String oid);
 }

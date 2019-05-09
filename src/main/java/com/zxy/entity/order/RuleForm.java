@@ -10,6 +10,15 @@ public class RuleForm {
     private Double price;
     private String start;
     private String end;
+    private String uid;
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
 
     public String getTid() {
         return tid;

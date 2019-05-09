@@ -30,8 +30,14 @@ public class OrderServiceImpl implements OrderService{
         Order order = new Order();
 //        Integer uid =
         order.setTid(ruleForm.getTid());
+        order.setUid(ruleForm.getUid());
         order.setCreatedate(new Date());
-        order.setPrice(ruleForm.getPrice());
+        if(ruleForm.getStudent()){
+            Double price = ruleForm.getPrice()*0.9;
+            order.setPrice(price);
+        }else{
+            order.setPrice(ruleForm.getPrice());
+        }
         order.setStatus("购买成功");
         List<Stop> stops = stopMapper.findByTid(ruleForm.getTid());
         for (Stop stop:stops){
@@ -43,6 +49,7 @@ public class OrderServiceImpl implements OrderService{
                 order.setEndTime(stop.getArriveTime());
             }
         }
+        orderMapper.insert(order);
     }
 
     @Override
@@ -60,5 +67,10 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public List<Order> findAll(String uid) {
         return orderMapper.findAll(uid);
+    }
+
+    @Override
+    public Order findOne(String oid) {
+        return orderMapper.selectByPrimaryKey(oid);
     }
 }
