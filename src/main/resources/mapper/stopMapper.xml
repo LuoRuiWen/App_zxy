@@ -4,8 +4,8 @@
   <resultMap id="BaseResultMap" type="com.zxy.entity.stop.Stop">
     <id column="sid" jdbcType="VARCHAR" property="sid" />
     <result column="sname" jdbcType="VARCHAR" property="sname" />
-    <result column="arriveTime" jdbcType="TIME" property="arriveTime" />
-    <result column="awayTime" jdbcType="TIME" property="awayTime" />
+    <result column="arriveTime" jdbcType="TIMESTAMP" property="arriveTime" />
+    <result column="awayTime" jdbcType="TIMESTAMP" property="awayTime" />
     <result column="tid" jdbcType="VARCHAR" property="tid" />
     <result column="price" jdbcType="DOUBLE" property="price" />
     <result column="level" jdbcType="INTEGER" property="level" />
@@ -27,8 +27,8 @@
     insert into stop (sid, sname, arriveTime,
       awayTime, tid, price,
       level)
-    values (#{sid,jdbcType=VARCHAR}, #{sname,jdbcType=VARCHAR}, #{arriveTime,jdbcType=TIME},
-      #{awayTime,jdbcType=TIME}, #{tid,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE},
+    values (#{sid,jdbcType=VARCHAR}, #{sname,jdbcType=VARCHAR}, #{arriveTime,jdbcType=TIMESTAMP},
+      #{awayTime,jdbcType=TIMESTAMP}, #{tid,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE},
       #{level,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.zxy.entity.stop.Stop">
@@ -64,10 +64,10 @@
         #{sname,jdbcType=VARCHAR},
       </if>
       <if test="arriveTime != null">
-        #{arriveTime,jdbcType=TIME},
+        #{arriveTime,jdbcType=TIMESTAMP},
       </if>
       <if test="awayTime != null">
-        #{awayTime,jdbcType=TIME},
+        #{awayTime,jdbcType=TIMESTAMP},
       </if>
       <if test="tid != null">
         #{tid,jdbcType=VARCHAR},
@@ -88,8 +88,8 @@
       level)
     values
     <foreach collection="list" separator="," item="stop">
-      (#{stop.sid,jdbcType=VARCHAR}, #{stop.sname,jdbcType=VARCHAR}, #{stop.arriveTime,jdbcType=TIME},
-      #{stop.awayTime,jdbcType=TIME}, #{stop.tid,jdbcType=VARCHAR}, #{stop.price,jdbcType=DOUBLE},
+      (#{stop.sid,jdbcType=VARCHAR}, #{stop.sname,jdbcType=VARCHAR}, #{stop.arriveTime,jdbcType=TIMESTAMP},
+      #{stop.awayTime,jdbcType=TIMESTAMP}, #{stop.tid,jdbcType=VARCHAR}, #{stop.price,jdbcType=DOUBLE},
       #{stop.level,jdbcType=INTEGER})
     </foreach>
   </insert>
@@ -105,10 +105,10 @@
         sname = #{sname,jdbcType=VARCHAR},
       </if>
       <if test="arriveTime != null">
-        arriveTime = #{arriveTime,jdbcType=TIME},
+        arriveTime = #{arriveTime,jdbcType=TIMESTAMP},
       </if>
       <if test="awayTime != null">
-        awaTime = #{awayTime,jdbcType=TIME},
+        awaTime = #{awayTime,jdbcType=TIMESTAMP},
       </if>
       <if test="tid != null">
         tid = #{tid,jdbcType=VARCHAR},
@@ -125,8 +125,8 @@
   <update id="updateByPrimaryKey" parameterType="com.zxy.entity.stop.Stop">
     update stop
     set sname = #{sname,jdbcType=VARCHAR},
-      arriveTime = #{arriveTime,jdbcType=TIME},
-      awayTime = #{awayTime,jdbcType=TIME},
+      arriveTime = #{arriveTime,jdbcType=TIMESTAMP},
+      awayTime = #{awayTime,jdbcType=TIMESTAMP},
       tid = #{tid,jdbcType=VARCHAR},
       price = #{price,jdbcType=DOUBLE},
       level = #{level,jdbcType=INTEGER}
@@ -138,4 +138,10 @@
     from stop
     where tid = #{tid,jdbcType=VARCHAR}
   </select>
+
+
+  <delete id="deleteByTrain" parameterType="String">
+    delete from stop
+    where tid = #{tid,jdbcType=VARCHAR}
+  </delete>
 </mapper>

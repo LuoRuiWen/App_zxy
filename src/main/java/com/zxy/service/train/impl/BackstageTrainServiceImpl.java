@@ -1,15 +1,16 @@
 package com.zxy.service.train.impl;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zxy.dao.stop.StopMapper;
 import com.zxy.dao.train.TrainMapper;
 import com.zxy.entity.stop.Stop;
 import com.zxy.entity.train.Train;
 import com.zxy.exception.ServiceException;
-import com.zxy.model.backstage.AddStopForm;
-import com.zxy.model.backstage.AddTrainForm;
+import com.zxy.model.backstage.*;
 import com.zxy.service.train.BackstageTrainService;
 import com.zxy.utils.IdUtils;
 import com.zxy.utils.ResultData;
+import com.zxy.utils.ResultPage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -51,7 +52,7 @@ public class BackstageTrainServiceImpl implements BackstageTrainService {
             stop.setLevel(i+1);
             if(i>0&&stop.getArriveTime()==null){
                 return ResultData.error(501,"不是首站抵达时间不能为空！");
-            }else if(stop.getPrice()==null){
+            }else if(i>0&&stop.getPrice()==null){
                 return ResultData.error(501,"不是首站票价不能为空！");
             }
             if(i<stopsForms.size()-1&&stop.getAwayTime()==null){
@@ -81,7 +82,37 @@ public class BackstageTrainServiceImpl implements BackstageTrainService {
     }
 
 
-    public ResultData trainList(){
-        return null;
+    public ResultData trainList(QueryTrainListForm form){
+        try {
+            Page page = new Page();
+            page.setCurrent(form.getCurrentPage());
+            page.setSize(form.getPageSize());
+            List<QueryTrainListResultForm> trains = trainMapper.findByArriveTime(new Date(), page);
+            ResultPage resultPage = new ResultPage();
+            resultPage.setList(trains);
+            resultPage.setTotal(page.getTotal());
+            return ResultData.ok(resultPage);
+        }catch (ServiceException e){
+            throw e;
+        }catch (Exception e){
+            throw new ServiceException("查询列车列表出错",e);
+        }
+    }
+
+    public ResultData deleteTrain(String id){
+        try{
+            trainMapper.deleteByPrimaryKey(id);
+            stopMapper.deleteByTrain(id);
+            return ResultData.ok();
+        }catch (ServiceException e){
+            throw e;
+        }catch (Exception e){
+            throw new ServiceException("删除车次出错！",e);
+        }
+    }
+
+    public ResultData trainDetail(String id){
+        QueryTrainDetailResultForm trainDetail = trainMapper.trainDetail(id);
+        return ResultData.ok(trainDetail);
     }
 }
