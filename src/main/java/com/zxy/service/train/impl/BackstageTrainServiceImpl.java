@@ -58,8 +58,8 @@ public class BackstageTrainServiceImpl implements BackstageTrainService {
             if(i<stopsForms.size()-1&&stop.getAwayTime()==null){
                 return ResultData.error(501,"不是末站发车时间不能为空！");
             }
-            if(i>0&&i<stopsForms.size()-1&&stop.getArriveTime().getTime()<stop.getAwayTime().getTime()){
-                return ResultData.error(501,"发车时间不能小于抵达时间！");
+            if(i>0&&i<stopsForms.size()-1&&stop.getAwayTime().getTime()<stop.getArriveTime().getTime()){
+                return ResultData.error(501,"第"+(i+1)+"站发车时间不能小于抵达时间！");
             }
             if(i>0){
                 if(stop.getArriveTime().getTime()<stops.get(i-1).getAwayTime().getTime()-10*60*1000){
@@ -114,5 +114,23 @@ public class BackstageTrainServiceImpl implements BackstageTrainService {
     public ResultData trainDetail(String id){
         QueryTrainDetailResultForm trainDetail = trainMapper.trainDetail(id);
         return ResultData.ok(trainDetail);
+    }
+
+    public ResultData modifyStops(ModifyTrainForm form){
+        try {
+            List<TrainStopListForm> stopForms = form.getStops();
+            List<Stop> stops = new ArrayList<>();
+            for (TrainStopListForm stopForm : stopForms) {
+                Stop stop = new Stop();
+                BeanUtils.copyProperties(stopForm, stop);
+                stops.add(stop);
+            }
+            int result = stopMapper.alterStops(stops);
+            return ResultData.ok(result);
+        }catch(ServiceException e){
+            throw e;
+        }catch (Exception e){
+            throw new ServiceException("修改失败！",e);
+        }
     }
 }

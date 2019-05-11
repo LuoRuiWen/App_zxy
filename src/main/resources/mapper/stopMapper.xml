@@ -94,6 +94,20 @@
     </foreach>
   </insert>
 
+  <insert id="alterStops" parameterType="List">
+    insert into stop
+    (sid, sname, arriveTime,
+    awayTime, tid, price,
+    level)
+    values
+    <foreach collection="list" separator="," item="stop">
+      (#{stop.sid,jdbcType=VARCHAR}, #{stop.sname,jdbcType=VARCHAR}, #{stop.arriveTime,jdbcType=TIMESTAMP},
+      #{stop.awayTime,jdbcType=TIMESTAMP}, #{stop.tid,jdbcType=VARCHAR}, #{stop.price,jdbcType=DOUBLE},
+      #{stop.level,jdbcType=INTEGER})
+    </foreach>
+    on duplicate key update price =values(price)
+  </insert>
+
 
 
 

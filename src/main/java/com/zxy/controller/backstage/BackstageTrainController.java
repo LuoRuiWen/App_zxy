@@ -2,6 +2,7 @@ package com.zxy.controller.backstage;
 
 
 import com.zxy.model.backstage.AddTrainForm;
+import com.zxy.model.backstage.ModifyTrainForm;
 import com.zxy.model.backstage.QueryTrainListForm;
 import com.zxy.service.train.BackstageTrainService;
 import com.zxy.utils.ResultData;
@@ -33,5 +34,10 @@ public class BackstageTrainController {
     @GetMapping("/train/{tid}")
     public ResultData trainDetail(@PathVariable String tid){
         return backstageTrainService.trainDetail(tid);
+    }
+
+    @PutMapping("/trainStops")
+    public ResultData modifyStops(@RequestBody ModifyTrainForm form){
+        return backstageTrainService.modifyStops(form);
     }
 }
