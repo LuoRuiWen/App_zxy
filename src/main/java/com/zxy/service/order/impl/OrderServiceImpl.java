@@ -6,11 +6,13 @@ import com.zxy.dao.train.TrainMapper;
 import com.zxy.entity.order.Order;
 import com.zxy.entity.order.RuleForm;
 import com.zxy.entity.stop.Stop;
+import com.zxy.entity.train.Train;
 import com.zxy.service.order.OrderService;
 import com.zxy.utils.IdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -25,6 +27,7 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public void booking(RuleForm ruleForm) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd HH:mm");
         //减少票余量
         trainMapper.reduceTicket(ruleForm.getTid());
         //添加订单
@@ -45,11 +48,11 @@ public class OrderServiceImpl implements OrderService{
         for (Stop stop:stops){
             if(ruleForm.getStart().equals(stop.getSname())){
                 order.setStartSid(stop.getSid());
-                order.setStartTime(stop.getAwayTime());
+                order.setStartTime(dateFormat.format(stop.getAwayTime()));
                 order.setStartName(stop.getSname());
             }else if(ruleForm.getEnd().equals(stop.getSname())){
                 order.setStopSid(stop.getSid());
-                order.setEndTime(stop.getArriveTime());
+                order.setEndTime(dateFormat.format(stop.getArriveTime()));
                 order.setEndName(stop.getSname());
             }
         }
@@ -58,9 +61,18 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public Boolean refund(String oid) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd HH:mm");
         //首先查找到此订单查看订单出发时间
         Order order = orderMapper.selectByPrimaryKey(oid);
-        int flag= order.getStartTime().compareTo(new Date());
+        List<Stop> stops = stopMapper.findByTid(order.getTid());
+        String sid = order.getStartSid();
+        String startTime = "";
+        for(Stop stop:stops){
+            if(sid.equals(stop.getSid())){
+                startTime=dateFormat.format(stop.getAwayTime());
+            }
+        }
+        int flag= startTime.compareTo(dateFormat.format(new Date()));
         if(flag>1){
             orderMapper.refund(oid);
             return true;
@@ -70,7 +82,29 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public List<Order> findAll(String uid) {
-        return orderMapper.findAll(uid);
+        List<Order> orders = orderMapper.findAll(uid);
+        List<Train> trains = trainMapper.findAll();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd HH:mm");
+        for(Order order:orders){
+            String tid = order.getTid();
+            for (Train train:trains){
+                if(tid.equals(train.getTid())){
+                    List<Stop> stops = stopMapper.findByTid(tid);
+                    for (Stop stop:stops){
+                        if(order.getStartSid().equals(stop.getSid())){
+                            order.setStartName(stop.getSname());
+                            order.setStartTime(dateFormat.format(stop.getAwayTime()));
+                        }else if(order.getStopSid().equals(stop.getSid())){
+                            String end = dateFormat.format(stop.getArriveTime());
+                            order.setEndName(stop.getSname());
+                            order.setEndTime(end);
+                        }
+                    }
+                }
+            }
+        }
+
+        return orders;
     }
 
     @Override

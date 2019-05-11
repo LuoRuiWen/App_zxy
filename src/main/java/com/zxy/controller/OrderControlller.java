@@ -47,7 +47,7 @@ public class OrderControlller {
      * @param oid
      */
     @RequestMapping("/refund")
-    public void refund(String oid){
+    public Boolean refund(String oid){
         Order order = orderService.findOne(oid);
         String tid = order.getTid();
         //修改订单状态
@@ -55,5 +55,6 @@ public class OrderControlller {
         if(flag){
             trainService.addTicket(tid);
         }
+        return  flag;
     }
 }
