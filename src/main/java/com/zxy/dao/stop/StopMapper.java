@@ -21,4 +21,7 @@ public interface StopMapper {
 
     int addStops(List<Stop> stops);
 
+    int deleteByTrain(String tid);
+
+    int alterStops(List<Stop> stops);
 }

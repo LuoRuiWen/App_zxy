@@ -100,10 +100,39 @@
     <id column="tid" jdbcType="VARCHAR" property="tid" />
     <result column="tname" jdbcType="VARCHAR" property="tname" />
     <result column="num" jdbcType="INTEGER" property="num" />
-    <result column="awayTime" jdbcType="TIMESTAMP" property="arriveTime"/>
-    <result column="arriveTime" jdbcType="TIMESTAMP" property="arriveTime"/>
+    <result column="startTime" jdbcType="TIMESTAMP" property="startTime"/>
+    <result column="endTime" jdbcType="TIMESTAMP" property="endTime"/>
+    <result column="start" jdbcType="VARCHAR" property="start" />
+    <result column="end" jdbcType="VARCHAR" property="end" />
   </resultMap>
-  <select id="findByArriveTime" parameterType="Date" resultMap="BaseResultMap">
 
+
+  <select id="findByArriveTime" parameterType="Date" resultMap="JoinMap">
+    select train.*,st1.sname start,st1.awayTime startTime,st2.sname end,st2.arriveTime endTime
+    from train
+    left join stop st1 on st1.tid = train.tid and st1.arriveTime is NULL
+    left join stop st2 on st2.tid=train.tid and st2.awayTime is NULL
+    where st2.arriveTime >#{tTime,jdbcType=TIMESTAMP}
+  </select>
+
+  <resultMap id="DetailJoinMap" type="com.zxy.model.backstage.QueryTrainDetailResultForm">
+    <id column="tid" jdbcType="VARCHAR" property="tid" />
+    <result column="tname" jdbcType="VARCHAR" property="tname" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <collection property="stops" ofType="com.zxy.model.backstage.TrainStopListForm">
+      <id property="sid" jdbcType="VARCHAR" column="sid"/>
+      <result column="arriveTime" jdbcType="TIMESTAMP" property="arriveTime"/>
+      <result column="awayTime" jdbcType="TIMESTAMP" property="awayTime"/>
+      <result column="sname" jdbcType="VARCHAR" property="sname" />
+      <result column="price" jdbcType="DOUBLE" property="price" />
+      <result column="level" jdbcType="INTEGER" property="level" />
+    </collection>
+  </resultMap>
+
+  <select id="trainDetail" parameterType="String" resultMap="DetailJoinMap">
+    select *
+    from train t left join stop s on t.tid = s.tid
+    where t.tid = #{id,jdbcType=VARCHAR}
+    order by level asc
   </select>
 </mapper>
